@@ -3,6 +3,7 @@
     <div class="d-flex">
       <input 
         type="text"
+        ref="todoInput"
         @input="onUserInput"
         @keyup.enter="onSubmit"
         class="form-control"
@@ -16,7 +17,7 @@
         Add
       </button>
     </div>
-    <div> / 50자</div>
+    <div> {{ userInput.length }}/ 50자</div>
   </div>
 </template>
 
@@ -40,7 +41,12 @@ export default {
       }
       this.userInput = e.target.value
     },
-    onSubmit() {
+    onSubmit(e) {
+      if (!this.userInput.length) return
+      
+      if (this.userInput.length === 0) {
+        return
+      }
       // 검증 ( 문장 길이 제한)
       if (this.userInput.length > 50) {
         const errorMsg = '너무 길어요!'
@@ -53,6 +59,8 @@ export default {
       this.$store.commit('UPDATE_ERROR', '')
       this.$store.commit('CREATE_TODO', this.newTodo(this.userInput))
       this.userInput = '' // input 태그 초기화
+      e.target.value = '' 
+      this.$refs.todoInput.value = ''
     },
     newTodo(content) {
       return {
