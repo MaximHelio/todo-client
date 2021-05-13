@@ -17,7 +17,7 @@
         Add
       </button>
     </div>
-    <div> {{ userInput.length }}/ 50자</div>
+    <div class="text-end"> {{ userInput.length }}/ 50자</div>
   </div>
 </template>
 
