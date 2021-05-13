@@ -5,7 +5,7 @@
         type="text"
         @input="onUserInput"
         @keyup.enter="onSubmit"
-        class="form-comtrol"
+        class="form-control"
         placeholder="입력"
         autofocus
       >
